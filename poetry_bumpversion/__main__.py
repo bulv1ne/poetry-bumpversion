@@ -149,7 +149,6 @@ def directory_path(value) -> Path:
 
 
 parser = argparse.ArgumentParser(
-    prog="poetry_bumpversion",
     description="Bumps the version in pyproject.toml and creates a git commit + tag",
 )
 parser.add_argument(
@@ -166,7 +165,7 @@ parser.add_argument(
     "--dryrun",
     dest="dry_run",
     action="store_true",
-    help="sum the integers (default: find the max)",
+    help="Don't executy any git command or change any file",
 )
 
 
