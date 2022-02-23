@@ -170,7 +170,7 @@ parser.add_argument(
 )
 
 
-def main():
+def main():  # pragma: no cover
     args = parser.parse_args()
     cli(args.project_dir, args.version_part, args.dry_run)
 
