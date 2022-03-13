@@ -21,5 +21,5 @@ pipx install git+https://github.com/bulv1ne/poetry-bumpversion
 ## Usage
 
 ```sh
-poetry-bumpversion -h
+pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion --help
 ```
