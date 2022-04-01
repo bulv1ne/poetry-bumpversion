@@ -23,3 +23,11 @@ pipx install git+https://github.com/bulv1ne/poetry-bumpversion
 ```sh
 pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion --help
 ```
+
+## GitHub Actions
+
+Copy the files [version-bump.yml](https://github.com/bulv1ne/poetry-bumpversion/blob/main/.github/workflows/version-bump.yml) and [version-tag.yml](https://github.com/bulv1ne/poetry-bumpversion/blob/main/.github/workflows/version-tag.yml) to your own `.github/workflows/` folder.
+
+**version-bump.yml** is a manually triggered GitHub Action Workflow to bump the version. It will create a "release" branch with the version code changes and create a Pull Request.
+
+**version-tag.yml** will be triggered automatically when the Pull Request is merged. The only requirement is that the commit message contains "Bump version from vA.B.C to vX.Y.Z", it will take the 6th word in that line to create a tag.
