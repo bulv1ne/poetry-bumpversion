@@ -31,3 +31,48 @@ Copy the files [version-bump.yml](https://github.com/bulv1ne/poetry-bumpversion/
 **version-bump.yml** is a manually triggered GitHub Action Workflow to bump the version. It will create a "release" branch with the version code changes and create a Pull Request.
 
 **version-tag.yml** will be triggered automatically when the Pull Request is merged. The only requirement is that the commit message contains "Bump version from vA.B.C to vX.Y.Z", it will take the 6th word in that line to create a tag.
+
+### Use Github reusable workflows
+
+**version-bump.yml**
+
+```yml
+name: Version bump
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionPart:
+        description: 'Version bump part'
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  version-bump:
+    name: Version bump on release branch
+    uses: bulv1ne/poetry-bumpversion/.github/workflows/version-bump.yml@main
+    with:
+      versionPart: ${{ inputs.versionPart }}
+```
+
+
+**version-tag.yml**
+
+```yml
+name: Version tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-tag:
+    name: Version tag
+    uses: bulv1ne/poetry-bumpversion/.github/workflows/version-tag.yml@main
+```
