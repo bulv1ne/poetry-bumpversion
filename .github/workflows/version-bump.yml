@@ -16,6 +16,13 @@ on:
         - minor
         - major
 
+  workflow_call:
+    inputs:
+      versionPart:
+        description: 'Version bump part'
+        required: true
+        type: string
+
 jobs:
   deploy:
     name: Version bump on release branch
@@ -24,6 +31,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v4.3.0
+      with:
+        python-version: '3.10'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip pipx
@@ -37,7 +46,7 @@ jobs:
         pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion ${{ github.event.inputs.versionPart }}
     - name: Git push
       run: |
-        git push origin release
+        git push origin release --force
     - name: Create Pull Request
       uses: actions/github-script@v6
       with:
