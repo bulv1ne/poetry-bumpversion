@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ['3.9']
+        python_version: ['3.11']
         code_command: [flake8, isort, black, mypy]
 
     steps:
@@ -44,6 +44,7 @@ jobs:
           - python_version: '3.9'
           - python_version: '3.10'
           - python_version: '3.11'
+          - python_version: '3.12'
 
     steps:
     - uses: actions/checkout@v4
