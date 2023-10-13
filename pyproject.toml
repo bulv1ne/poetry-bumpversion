@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-bumpversion"
-version = "0.1.1"
+version = "0.1.2"
 description = "Bumps the version in pyproject.toml and creates a git commit + tag"
 authors = ["Niels Lemmens <1936122+bulv1ne@users.noreply.github.com>"]
 readme = "README.md"
