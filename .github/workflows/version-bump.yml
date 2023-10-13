@@ -15,6 +15,10 @@ on:
         - patch
         - minor
         - major
+      projectDir:
+        description: 'Project directory where the pyproject.toml is located'
+        required: false
+        default: '.'
 
   workflow_call:
     inputs:
@@ -22,6 +26,11 @@ on:
         description: 'Version bump part'
         required: true
         type: string
+      projectDir:
+        description: 'Project directory where the pyproject.toml is located'
+        required: false
+        type: string
+        default: '.'
 
 jobs:
   deploy:
@@ -43,7 +52,7 @@ jobs:
         git checkout -b release
     - name: Bumpversion
       run: |
-        pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion ${{ github.event.inputs.versionPart }}
+        pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion ${{ github.event.inputs.versionPart }} --project-dir ${{ github.event.inputs.projectDir }}
     - name: Git push
       run: |
         git push origin release --force
