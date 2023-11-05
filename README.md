@@ -58,7 +58,6 @@ jobs:
     uses: bulv1ne/poetry-bumpversion/.github/workflows/version-bump.yml@main
     with:
       versionPart: ${{ inputs.versionPart }}
-      projectDir: app/  # Optional, defaults to root directory
 ```
 
 
