@@ -22,6 +22,11 @@ on:
         description: 'Version bump part'
         required: true
         type: string
+      projectDir:
+        description: 'Project directory where the pyproject.toml is located'
+        required: false
+        type: string
+        default: '.'
 
 jobs:
   deploy:
@@ -32,7 +37,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4.7.1
       with:
-        python-version: '3.10'
+        python-version: '3.12'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip pipx
@@ -43,7 +48,8 @@ jobs:
         git checkout -b release
     - name: Bumpversion
       run: |
-        pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion ${{ github.event.inputs.versionPart }}
+        set -e
+        pipx run --spec git+https://github.com/bulv1ne/poetry-bumpversion poetry-bumpversion ${{ inputs.versionPart }} --project-dir ${{ inputs.projectDir }}
     - name: Git push
       run: |
         git push origin release --force

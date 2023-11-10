@@ -23,7 +23,7 @@ jobs:
       id: version_number
       continue-on-error: true
       run: |
-        OUTPUT=$(git show -q | grep "Bump version from" | awk '{print $6}') &&
+        OUTPUT=$(git show -q | grep -o "Bump version from v[0-9.]* to v[0-9.]*" | awk '{print $NF}') &&
         echo "OUTPUT=$OUTPUT" >> $GITHUB_OUTPUT
     - name: Git tag & push
       if: steps.version_number.outputs.OUTPUT != ''
