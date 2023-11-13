@@ -54,7 +54,7 @@ jobs:
       run: |
         git push origin release --force
     - name: Create Pull Request
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           const { repo, owner } = context.repo;
