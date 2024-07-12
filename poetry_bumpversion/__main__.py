@@ -44,6 +44,9 @@ class Project:
         return match.group("repository")
 
     def update_changelog(self, old_version_number: str, version_number: str):
+        if not self.changelog.exists():
+            print("CHANGELOG.md not found")
+            return
         file_text = self.changelog.read_text()
         file_text = file_text.replace(
             "## [Unreleased]",
