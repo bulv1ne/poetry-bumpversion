@@ -23,7 +23,7 @@ jobs:
       with:
         submodules: true
     - name: Set up Python ${{ matrix.python_version }}
-      uses: actions/setup-python@v5.4.0
+      uses: actions/setup-python@v5.5.0
       with:
         python-version: ${{ matrix.python_version }}
     - name: Install dependencies
@@ -54,7 +54,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.email "<>"
     - name: Set up Python ${{ matrix.python_version }}
-      uses: actions/setup-python@v5.4.0
+      uses: actions/setup-python@v5.5.0
       with:
         python-version: ${{ matrix.python_version }}
     - name: Install dependencies
