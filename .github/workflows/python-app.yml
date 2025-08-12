@@ -19,7 +19,7 @@ jobs:
         code_command: [flake8, isort, black, mypy]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         submodules: true
     - name: Set up Python ${{ matrix.python_version }}
@@ -47,7 +47,7 @@ jobs:
           - python_version: '3.12'
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: git setup
       run: |
         git config --global user.name "GitHub Actions Bot"
